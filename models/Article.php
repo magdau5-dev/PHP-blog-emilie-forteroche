@@ -127,4 +127,28 @@
     {
         return $this->dateUpdate;
     }
+
+    /**
+     * Nombre de vues de l'article. De base on met 0 car un article n'a pas encore été vu.
+     */
+    private int $views = 0;
+
+    /**
+     * Setter pour le nombre de vues.
+     * @param int $views
+     * @return void
+     */
+    public function setViews(int $views) : void
+    {
+        $this->views = $views;
+    }
+
+    /**
+     * Getter pour le nombre de vues.
+     * @return int
+     */
+    public function getViews() : int
+    {
+        return $this->views;
+    }
  }
