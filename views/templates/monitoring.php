@@ -9,10 +9,45 @@
 <table class="monitoringTable">
     <thead>
         <tr>
-            <th>Titre</th>
-            <th>Nombre de vues</th>
-            <th>Nombre de commentaires</th>
-            <th>Date de publication</th>
+            <th>
+                <a href="index.php?action=monitoring&sort=title&order=<?= ($sort === 'title' && $order === 'asc') ? 'desc' : 'asc' ?>">
+                    Titre
+                    <?= $sort === 'title'
+                        ? ($order === 'asc' ? '↑' : '↓')
+                        : '↕'
+                    ?>
+                </a>
+            </th>
+
+            <th>
+                <a href="index.php?action=monitoring&sort=views&order=<?= ($sort === 'views' && $order === 'asc') ? 'desc' : 'asc' ?>">
+                    Nombre de vues
+                    <?= $sort === 'views'
+                        ? ($order === 'asc' ? '↑' : '↓')
+                        : '↕'
+                    ?>
+                </a>
+            </th>
+
+            <th>
+                <a href="index.php?action=monitoring&sort=comments&order=<?= ($sort === 'comments' && $order === 'asc') ? 'desc' : 'asc' ?>">
+                    Nombre de commentaires
+                    <?= $sort === 'comments'
+                        ? ($order === 'asc' ? '↑' : '↓')
+                        : '↕'
+                    ?>
+                </a>
+            </th>
+
+            <th>
+                <a href="index.php?action=monitoring&sort=date&order=<?= ($sort === 'date' && $order === 'asc') ? 'desc' : 'asc' ?>">
+                    Date de publication
+                    <?= $sort === 'date'
+                        ? ($order === 'asc' ? '↑' : '↓')
+                        : '↕'
+                    ?>
+                </a>
+            </th>
         </tr>
     </thead>
 
