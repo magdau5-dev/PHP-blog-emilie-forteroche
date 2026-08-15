@@ -45,11 +45,63 @@ class AdminController {
     {
         $this->checkIfUserIsConnected();
 
+        $sort = Utils::request("sort", "title");
+        $order = Utils::request("order", "asc");
+
+        $allowedSorts = ['title', 'views', 'comments', 'date'];
+        $allowedOrders = ['asc', 'desc'];
+
+        if (!in_array($sort, $allowedSorts)) {
+            $sort = 'title';
+        }
+
+        if (!in_array($order, $allowedOrders)) {
+            $order = 'asc';
+        }
+
         $articleManager = new ArticleManager();
         $articles = $articleManager->getArticlesForMonitoring();
 
+        usort($articles, function ($a, $b) use ($sort, $order) {
+
+        switch ($sort) {
+            case 'views':
+                $valueA = $a->getViews();
+                $valueB = $b->getViews();
+                break;
+
+            case 'comments':
+                $valueA = $a->getCommentCount();
+                $valueB = $b->getCommentCount();
+                break;
+
+            case 'date':
+                $valueA = $a->getDateCreation()->getTimestamp();
+                $valueB = $b->getDateCreation()->getTimestamp();
+                break;
+
+            case 'title':
+            default:
+                $valueA = $a->getTitle();
+                $valueB = $b->getTitle();
+                break;
+        }
+
+        if ($valueA == $valueB) {
+            return 0;
+        }
+
+        $result = $valueA <=> $valueB;
+
+        return $order === 'asc' ? $result : -$result;
+    });
+
         $view = new View("Monitoring du blog");
-        $view->render("monitoring", ['articles' => $articles]);
+        $view->render("monitoring", [
+        'articles' => $articles,
+        'sort' => $sort,
+        'order' => $order
+    ]);
     }
 
     /**
