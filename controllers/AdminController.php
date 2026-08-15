@@ -38,6 +38,18 @@ class AdminController {
     }
 
     /**
+     * Affiche la page de monitoring.
+     * @return void
+     */
+    public function showMonitoring() : void
+    {
+        $this->checkIfUserIsConnected();
+
+        $view = new View("Monitoring du blog");
+        $view->render("monitoring");
+    }
+
+    /**
      * Affichage du formulaire de connexion.
      * @return void
      */
