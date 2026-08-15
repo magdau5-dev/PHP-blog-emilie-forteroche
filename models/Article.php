@@ -151,4 +151,28 @@
     {
         return $this->views;
     }
+
+    /**
+     * Nombre de commentaires de l'article. De base on met 0 car un article n'a pas encore de commentaires.
+     */
+    private int $commentCount = 0;
+
+    /**
+     * Setter pour le nombre de commentaires.
+     * @param int $commentCount
+     * @return void
+     */
+    public function setCommentCount(int $commentCount) : void
+    {
+        $this->commentCount = $commentCount;
+    }
+
+    /**
+     * Getter pour le nombre de commentaires.
+     * @return int
+     */
+    public function getCommentCount() : int
+    {
+        return $this->commentCount;
+}
  }

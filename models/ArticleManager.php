@@ -94,6 +94,25 @@ class ArticleManager extends AbstractEntityManager
     }
 
     /**
+     * Récupère tous les articles avec leur nombre de commentaires
+     * pour la page de monitoring.
+     * @return array : un tableau d'objets Article.
+     */
+    public function getArticlesForMonitoring() : array
+    {
+        $sql = "SELECT article.*, (SELECT COUNT(*) FROM comment WHERE comment.id_article = article.id) AS comment_count FROM article";
+
+        $result = $this->db->query($sql);
+        $articles = [];
+
+        while ($article = $result->fetch()) {
+            $articles[] = new Article($article);
+        }
+
+        return $articles;
+    }
+
+    /**
      * Supprime un article.
      * @param int $id : l'id de l'article à supprimer.
      * @return void
