@@ -313,6 +313,21 @@ a.info {
     color: white;
 }
 
+.deleteCommentButton {
+    background-color: var(--commentColor);
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.deleteCommentButton:hover {
+    opacity: 0.8;
+}
+
 .articleLine {
     display: flex; 
 }

@@ -33,10 +33,10 @@
                 echo '      <p class="content">' . Utils::format($comment->getContent()) . '</p>';
 
                 if (isset($_SESSION['user'])) {
-                    echo '  <form action="index.php" method="post">';
+                    echo '  <form action="index.php" method="post" onsubmit="return confirm(\'Voulez-vous vraiment supprimer ce commentaire ?\');">';
                     echo '      <input type="hidden" name="action" value="deleteComment">';
                     echo '      <input type="hidden" name="id" value="' . $comment->getId() . '">';
-                    echo '      <button type="submit">Supprimer</button>';
+                    echo '      <button type="submit" class="deleteCommentButton">Supprimer</button>';
                     echo '  </form>';
                 }
                 echo '  </div>';
