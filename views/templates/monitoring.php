@@ -6,7 +6,7 @@
 
 <h2>Monitoring du blog</h2>
 
-<table>
+<table class="monitoringTable">
     <thead>
         <tr>
             <th>Titre</th>
